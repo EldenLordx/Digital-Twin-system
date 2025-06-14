@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>three.js webgl - orbit controls</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="main.css">
+	<!-- jquery -->
+	<script src="./lib/jquery-3.6.0.js"></script>
+	<!-- video.js -->
+	<link href="./video-js-7.19.0/video-js.min.css" rel="stylesheet">
+	<script src="./video-js-7.19.0/video.min.js"></script>
+	<!-- stats -->
+	<script type="text/javascript" src="./lib/stats.min.js"></script>
+
+
+	<style>
+		body {
+			background-color: #ccc;
+			color: #000;
+			overflow:hidden;
+
+		}
+
+		a {
+			color: #28807b;
+		}
+
+		/* #label {
+            position: absolute;
+            padding: 0px;
+            background: rgba(255, 255, 255, 0);
+            line-height: 1;
+            border-radius: 0px;
+			z-index: 1;
+        } */
+
+		#cVideo {
+            position: absolute;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            line-height: 1;
+            border-radius: 5px;
+			z-index: 2;
+			visibility: hidden;
+			
+        }
+
+		.vDiv {
+			position: absolute;
+		}
+
+		.cVideoBtn {
+			display: block;
+			text-align:center;
+			padding:50%;
+			position: absolute;
+			left: 302px;
+			top:4px;
+			width: 30px;
+			height: 30px;
+			overflow: hidden;
+			outline:none;
+			font-family:'Courier New', Courier, monospace;
+			font-size: x-large;
+			/* font-style: normal; */
+			color: #000;
+			z-index: 5;
+
+		}
+
+		.cVideoBtn:hover{
+  			background: #cc0000;
+			color: #ccc;
+		}
+
+		.videoElement {
+			position: absolute;
+			object-fit: fill;
+		}
+
+		#svg {
+			position: absolute;
+			z-index: 1;
+			pointer-events: none;
+		}
+
+		.icon {
+			position: absolute;
+			height: 30px;
+			width: 30px;
+            padding: 0px;
+            background: #FEC700;
+			opacity:0.65;   /* 摄像头图标透明度*/
+            line-height: 1;
+            border-radius: 50%;
+			text-align:center;
+			z-index: 1;
+		}
+
+		.faceIcon {
+			position: absolute;
+			height: 50px;
+			width: 50px;
+            padding: 0px;
+            /* background: rgb(128, 128, 128); */
+            line-height: 1;
+            border-radius: 50%;
+			/* border: 3px solid black; */
+			z-index: 5;
+			font-size: medium;
+			font-style: large;
+			font-weight: bolder;
+			color: black;
+		}
+
+		.faceImg {
+			/* border: 2;
+			border-style: solid;
+			border-color:black; */
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+		}
+</style>
+
+</head>
+
+<body overflow = 'hidden'>
+<div id="info">
+				<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - orbit controls
+	<!-- <a>监控系统</a> -->
+</div>
+<!-- 显示帧数的ui -->
+<div id="Stats-output"></div>
+
+<div id="icon0" class="icon">
+	<img src="../ui/camera17.png" width="30px" height="30px" style="object-fit: fit;" />
+</div>
+
+<div id="icon1" class="icon">
+	<img src="../ui/camera1.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon2" class="icon">
+	<img src="../ui/camera1.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon3" class="icon">
+	<img src="../ui/camera17.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon4" class="icon">
+	<img src="../ui/camera3.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon5" class="icon">
+	<img src="../ui/camera23.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon6" class="icon">
+	<img src="../ui/camera23.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon7" class="icon">
+	<img src="../ui/camera3.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon8" class="icon">
+	<img src="../ui/cameraL.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon9" class="icon">
+	<img src="../ui/camera28.png" width="30px" height="30px"/>
+</div>
+
+<div id="icon10" class="icon">
+	<img src="../ui/up1.png" width="23px" height="25px"/>
+</div>
+
+<div id="icon11" class="icon">
+	<img src="../ui/down1.png" width="23px" height="25px"/>
+</div>
+
+<!-- <div id="icontest" class="faceIcon">
+	<img src="../ui/down1.png" width="50px" height="50px"/>
+</div> -->
+
+<div id="cVideo">
+
+	<div id="cVideo1" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video1" class="videoElement" style="mix-blend-mode: screen;display:block;" muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo2" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video2" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"   preload="auto"></video>
+	</div>
+
+	<div id="cVideo3" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video3" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo4" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video4" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo5" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video5" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo6" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video6" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo7" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video7" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo8" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video8" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo9" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video9" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo10" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video10" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<div id="cVideo11" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video11" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	
+	<div id="cVideo12" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video12" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+
+	<!-- buffer video group -->
+	<div id="cVideo13" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video13" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	
+	<div id="cVideo14" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video14" class="videoElement" style="mix-blend-mode: screen;display:block;" muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo15" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video15" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo16" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video16" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo17" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video17" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo18" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video18" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo19" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video19" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo20" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video20" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo21" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video21" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo22" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video22" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo23" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video23" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+	<div id="cVideo24" class="vDiv">
+		<button type="button" class="cVideoBtn">×</button>
+		<video id="video24" class="videoElement" style="mix-blend-mode: screen;display:block;"  muted width="325" height="165"  preload="auto"></video>
+	</div>
+</div>
+
+
+
+
+<!-- <svg id="svg" width="1440" height="960"> 
+	<line id="line1" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line2" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line3" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line4" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line5" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line6" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line7" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line8" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line9" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line10" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line11" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+	<line id="line12" x1="0" y1="0" x2="0" y2="0" style="stroke:black;stroke-width:2"/>
+</svg> -->
+
+<script type="module">
+
+	onload = function () {
+		
+		let d = new Date();//获取系统当前时间
+		// console.warn('icon onload', iconGroup,'time',d.getMinutes(),'',d.getSeconds(),d.getMilliseconds());
+		for (let i = 0; i < 12; i++) {
+			iconGroup[i] = $('.icon')[i];
+			// console.log('iconGroup',iconGroup[i]);
+			$('.icon')[i].onclick = function () {
+				let currentCameraNum = 0;
+				for (let p = 0; p < 24; p++) {
+					if (videoGroup[p].children[1].style.visibility == 'visible') {
+						currentCameraNum++;
+					}
+				}
+
+				//获取摄像头编号
+				let cameraNum = No[i];
+
+				// 找到对应的视频
+				let videoIndex = -1;
+				let videoNumIdx = -1;
+				for (var q = 0; q < 12; q++) {
+					if (No[q] == parseInt(cameraNum)) {
+						videoIndex = q;
+						videoNumIdx = q;
+						videoQueue.push(q); //当前视频进入队列
+						//console.warn('videoIndex', videoIndex);
+					}
+				}
+
+				let videoIndex1;
+				if(videoIndex<12){
+					videoIndex1 = videoIndex + 12;
+				}else{
+					videoIndex1 = videoIndex - 12;
+				}
+				// 设置视频边框颜色
+				videoGroup[videoIndex].children[1].style.border = '4px solid'+colorList1[(videoQueue.length-1)%colorList1.length];
+				videoGroup[videoIndex1].children[1].style.border = '4px solid'+colorList1[(videoQueue.length-1)%colorList1.length];
+				iconGroup[i].style.background = colorList1[(videoQueue.length-1)%colorList1.length];
+
+				// 当前页面上视频数量已达到最大
+				if (currentCameraNum == guiParas.maxCameraNum) { 
+					let i1 = videoQueue.shift()//出队元素
+					let j = -1;
+
+					if(i1<12){
+						// console.error('!!!',i1);
+						iconGroup[i].style.background = iconGroup[i1].style.background;
+						iconGroup[i1].style.background = '#FEC700';
+						j = i1+12;
+					}else{ 
+						j = i1-12;
+						// console.error('!!!1',j);
+						iconGroup[i].style.background = iconGroup[j].style.background;
+						iconGroup[j].style.background = '#FEC700';
+					}
+
+					// console.warn('videoGroup[i]',videoGroup[i1].children[1].style.visibility);
+					// console.warn('videoGroup[j]',videoGroup[j].children[1].style.visibility);
+					if(videoGroup[i1].children[1].style.visibility == 'visible'){
+						// console.warn('shut',i,);
+						videoGroup[i1].children[0].style.visibility = 'hidden';
+						videoGroup[i1].children[1].style.visibility = 'hidden';
+						videoGroup[i1].children[1].pause() // 将最老的视频暂停并关闭
+
+						// 新视频使用老视频样式
+						videoGroup[videoIndex].children[1].style.border  = videoGroup[i1].children[1].style.border;
+						videoGroup[videoIndex1].children[1].style.border = videoGroup[i1].children[1].style.border;
+					}
+					if(videoGroup[j].children[1].style.visibility == 'visible'){
+						videoGroup[j].children[0].style.visibility = 'hidden';
+						videoGroup[j].children[1].style.visibility = 'hidden';
+						videoGroup[j].children[1].pause();//  将最老的视频暂停并关闭
+
+						// 新视频使用老视频样式
+						videoGroup[videoIndex].children[1].style.border  = videoGroup[i1].children[1].style.border;
+						videoGroup[videoIndex1].children[1].style.border = videoGroup[i1].children[1].style.border;
+					}
+					// console.warn(currentCameraNum,'i',i,'videoQueue',videoQueue);
+				}
+
+
+				// 获取窗口的一半高度和宽度
+				let halfWidth = window.innerWidth / 2;
+				let halfHeight = window.innerHeight / 2;
+				
+				// 逆转相机求出二维坐标
+				console.log('cameraGroup[i]!',videoIndex);
+				cameraGroup[videoIndex].updateMatrixWorld(); //更新物体世界坐标矩阵
+				var vector = new THREE.Vector3();
+				vector.setFromMatrixPosition(cameraGroup[videoIndex].matrixWorld);
+				vector.project(camera);
+
+			
+				
+				let x = count % 2;
+				if (x == 0) {
+					videoIndex = videoIndex + 12;
+				}
+
+				let videoI = videoGroup[videoIndex].children[1];
+				// videoI.pause();
+				videoNumGroup[videoNumIdx] = count;
+				videoI.src = file + cameraNum + '-' + String(count) + '.mp4';
+				// console.warn('count!', file + cameraNum + '-' + String(count) + '.mp4')
+				// 设置video标签位置
+				let left = vector.x * halfWidth + halfWidth;
+				let top = -vector.y * halfHeight + halfHeight;
+				// console.log('left', left, 'top', top, typeof (left));
+				$("#cVideo" + (videoIndex + 1).toString()).css({
+					left: left,
+					top: top,
+				});
+
+				videoI.style.visibility = 'visible';
+				videoGroup[videoIndex].style.visibility = 'visible';
+				videoGroup[videoIndex].children[0].style.visibility = 'visible';
+				videoGroup[videoIndex].children[1].style.visibility = 'visible';
+
+				
+
+				// console.warn('videoQueue', videoQueue);
+				videoI.play();
+				videoI.currentTime = parseFloat(frameCount / 20);
+				for (let j = 0; j < 24; j++) { //同步所有当前播放视频
+					if (videoGroup[j].children[1].style.visibility == 'visible') {
+						videoGroup[j].children[1].currentTime = parseFloat(frameCount / 20);
+					}
+				}
+				
+				enableDrag(videoGroup[videoIndex], videoIndex, (el, ev) => { }, 16)//限流间隔
+
+				// 缓冲下一段视频
+				let j = 0;
+
+				if (videoIndex < 12) {
+					j = videoIndex + 12;
+				} else {
+					j = videoIndex - 12;
+				}
+				console.log('now', videoIndex, 'next', j);
+				let videoJ = videoGroup[j].children[1];
+				videoJ.src = file + cameraNum + '-' + String(videoNumGroup[videoNumIdx] + 1) + '.mp4';
+				videoJ.pause();
+			}
+		}
+		
+		// console.warn('.cVideoBtn', $('.cVideoBtn'));
+		// 指定视频关闭按钮的关闭事件
+		let len = $('.cVideoBtn').length;
+		for(let i=0;i<len;i++){
+			$('.cVideoBtn')[i].onclick = function(){
+				// console.warn('idx:', i);
+				videoGroup[i].children[0].style.visibility = 'hidden';
+				videoGroup[i].children[1].style.visibility = 'hidden';
+				videoGroup[i].children[1].pause() // 暂停视频
+				console.error('cVideoBtnClosed1', i, videoQueue);
+				// 恢复摄像头图标颜色
+				let iconIdex = i;
+				if(iconIdex >= 12){
+					iconIdex = iconIdex - 12;
+				}
+				iconGroup[iconIdex].style.background = '#FEC700';
+			
+				let qIndex = videoQueue.indexOf(i);
+				if(qIndex!=-1){
+					videoQueue.splice(qIndex,1);
+				}else{
+					qIndex = videoQueue.indexOf(i-12);
+					videoQueue.splice(qIndex,1);
+				}
+				console.error('cVideoBtnClosed2', i, videoQueue);
+			}
+		}
+		// console.warn('videoElement', $('.videoElement'));
+		
+
+	
+		// 视频结束时，显示下一段视频 提前缓冲下下一段视频
+		for(let i=0; i<24; i++){
+			
+			$('.videoElement')[i].onended = function(){
+				console.log('x ended count', count,'i',i);
+				videoGroup[i].children[0].style.visibility = 'hidden';
+				videoGroup[i].children[1].style.visibility = 'hidden';
+
+				let cameraIdx = i;
+				if(i>=12){
+					cameraIdx = i-12;
+				}
+				videoNumGroup[cameraIdx]++;
+				console.log('videoNumGroup[cameraIdx]',videoNumGroup[cameraIdx]);
+				videoGroup[i].children[1].src = file + No[cameraIdx] + '-' + String(videoNumGroup[cameraIdx]+1) + '.mp4';
+				videoGroup[i].children[1].pause();
+				
+				// 获取当前div位置
+				let left = videoGroup[i].style.left;
+				let top = videoGroup[i].style.top;
+
+
+				let j = i+12;
+				if(i >= 12){ j = i-12; }
+				// 设置新视频div位置
+				videoGroup[j].style.left = left;
+				videoGroup[j].style.top = top;
+
+				// 使新视频标签可见
+				videoGroup[j].children[0].style.visibility = 'visible';
+				videoGroup[j].children[1].style.visibility = 'visible';
+				videoGroup[j].children[1].play();
+
+				//启用拖拽
+				enableDrag(videoGroup[j], j,(el, ev) => {},16)
+			}
+		}
+		let d1 = new Date();
+		// console.warn('icon onloadended', iconGroup,'time',d1.getMinutes(),'',d1.getSeconds(),d1.getMilliseconds());
+		enableIconRender = true;
+	}
+	
+
+	import * as THREE from '../build/three.module.js';
+
+	import { OrbitControls } from './jsm/controls/OrbitControls.js';
+
+	import { FirstPersonControls } from './jsm/controls/FirstPersonControls.js';
+
+	import { TrackballControls } from './jsm/controls/TrackballControls.js';
+
+	import { STLLoader } from './jsm/loaders/STLLoader.js';
+
+	import { CSS2DRenderer, CSS2DObject } from './jsm/renderers/CSS2DRenderer.js';
+
+	import { DDSLoader } from './jsm/loaders/DDSLoader.js';
+
+	import { MTLLoader } from './jsm/loaders/MTLLoader.js';
+
+	import { OBJLoader } from './jsm/loaders/OBJLoader.js';
+
+	import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
+
+	import { FBXLoader } from './jsm/loaders/FBXLoader.js';
+
+	import SkeletonUtils from './jsm/utils/SkeletonUtils.js';
+
+	import { AnimationAction } from './three.js/src/animation/AnimationAction.js';
+
+	import { AnimationMixer } from './three.js/src/animation/AnimationMixer.js';
+
+	import { FontLoader } from './jsm/loaders/FontLoader.js';
+
+	import { TextGeometry } from './jsm/geometries/TextGeometry.js';
+	
+	import { GUI } from "./lib/dat.gui.module.js";
+
+	// import {Stats} from "./libs/stats.module.js";
+ 	//E:\bs\监控\examples'
+
+	//开启人脸的变量
+	var faceEnable = true;
+
+	const clock = new THREE.Clock();
+	let  camera ,controls, scene, renderer, labelRenderer, persongroup, person, floor, plane;
+	
+	let speedx = 0.5*Math.random(),speedy = 0.5*Math.random();
+
+	//render(); // remove when using next line for animation loop (requestAnimationFrame)
+	// 全局变量
+	// var renderT = 1/20;
+	var renderT = 1/26;
+	var enableIconRender = false;
+	var timeS = 0;
+	var personnum = 0;
+	var txtnum = 0;
+	var skiptime = 1;
+	var poslist = [];
+	var preloadflag=1;
+	var lastSeconds = 0;
+	var newSeconds = 0;
+	var offsetQueue = new Array(0);
+
+
+	// person
+	var animationAction = [];
+	var animationMixer = [];
+	var character;
+
+	// board
+	var borderPo = [];
+
+	// video
+	var video;
+	var No=[17,18,19,20,21,23,24,25,27,28,35,36]; // num of cameras
+	var file="../demo/";
+	//var file="../camera/";
+	var poTime;
+	var videoGroup = [cVideo1, cVideo2, cVideo3, cVideo4, cVideo5, cVideo6, cVideo7, cVideo8, cVideo9, cVideo10, cVideo11, cVideo12,
+					  cVideo13, cVideo14, cVideo15, cVideo16, cVideo17, cVideo18, cVideo19, cVideo20, cVideo21, cVideo22, cVideo23, cVideo24];
+	var videoQueue = new Array(0);
+	// var top = -1;
+	// var lineGroup = [line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12];
+	var cameraGroup = [];
+	var offetTime = 0; //video sync
+	var refreshTime = 0;
+	var videoTime = 0;
+	var frameCount = 0; //帧数计数器
+	var frameNum = 0;
+	//text
+	var textmesh;
+
+	var tagfont;
+
+	//UI icon
+	var iconGroup = [];
+	var iconTagGroup = new Array(12).fill(0);
+	// GUI
+	var guiParas;
+	// stats
+	var stats;
+	// var currentCameraNum;
+
+	//lights
+	var SpotLightsPo = [];
+	var SpotlightGroup = [];
+
+	// control
+	var personSize = 2.5;
+	var wallMaterial;
+	var cameraIconVisible = true;
+	// person color list 
+	var colorList = ['#ff0000', '#0000ff', '#00ff00', '#5c0099', '#803f00', '#ffffff', '#000000'];
+	var colorList1 = ['#006400', '#00bfff', '#8c264d', '#000000', '#dda0dd'];
+
+	// last offset
+	var lastOffset = 0;
+
+	init();
+	let posgroup;
+	var count=0;
+
+
+	var latestno =load(file + '/latestno.txt');
+	count = latestno-1;
+	var videoNumGroup = new Array(12).fill(latestno-1)
+	var count1 = parseInt(count);
+	txtnum=count;
+	loadposition();
+
+	//let posgroup2;offsetQueue
+	animate();
+
+	//setInterval(animate, 20);
+
+
+	var camControls;
+	var ChildrenObj;
+	var selectObject; // 鼠标点击对象
+	function init() {
+		//初始化统计对象
+		stats = new Stats();
+		//设置统计模式
+		stats.setMode(0); // 0: fps, 1: ms
+		//统计信息显示在左上角
+		stats.domElement.style.position = 'absolute';
+		stats.domElement.style.left = '0px';
+		stats.domElement.style.top = '0px';
+		//将帧数统计对象添加到对应的<div>元素中
+		// document.getElementById("Stats-output").appendChild(stats.domElement);
+		
+		scene = new THREE.Scene();
+		scene.background = new THREE.Color( 0x000000 );//0xcccccc
+
+		// scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
+
+		camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+
+		camera.position.set( 0, 0, 75 );
+		// camera.position.set( -5, -45, 27.74 );
+		camera.up.set(0,1,0);
+		camera.updateProjectionMatrix() // 在更新照相机参数后 必须跟新其模型矩阵
+		
+		
+		
+		
+		// camera.up.set(1,0,0);
+		// camera.lookAt(new THREE.Vector3(0,0,0));
+		// -0.1528504644222142, y: 0.7120167862862449, z: 0.6853238880796735}
+		persongroup = new THREE.Group();
+		scene.add(persongroup);
+		
+		// world
+		let geometry = new THREE.PlaneGeometry(200, 200, 4, 4)
+		let material = new THREE.MeshPhongMaterial( { color: 0x000000, flatShading: true } );
+		material.shininess = 0;
+		plane = new THREE.Mesh(geometry, material);
+		//plane.receiveShadow = true;
+		plane.rotation.set( 0, 0, 0 );
+		scene.add(plane);
+
+		//label
+		// const camerapos=[[2, -21],[-2, 21],[-38, -29],[38, 29],[38, -29],[-2, -21],[-38, 29],[2, 21],[2, 5],[2,-5],[0, -24],[0, 24]];
+		// for(let i=0;i<12;i++){
+		// 	const numDiv = document.createElement( 'div' );
+		// 	numDiv.className = 'label';
+		// 	numDiv.textContent = No[i].toString();
+		// 	numDiv.style.marginTop = '-0em';
+		// 	const numLabel = new CSS2DObject( numDiv );
+		// 	numLabel.position.set( camerapos[i][0], camerapos[i][1], 3 );
+		// 	plane.add( numLabel );
+		// }
+
+
+		// keyboard event
+		setKeyEvents();
+		
+		// mouse event
+		addEventListener('click', onMouseClick, false);
+
+		//load map from mtl fiel(materials)
+		var mtlFilePath = '../133/133';
+		var mtlLoader = new MTLLoader();
+        mtlLoader.load(mtlFilePath + '.mtl', function (materials) {
+			materials.preload();
+			//  load obj file (3d map model)
+			var loader = new OBJLoader();
+			loader.setMaterials(materials);
+			// 设置子网格自身体坐标中心
+			loader.load( mtlFilePath + '.obj', function ( obj ) {
+				obj.children.forEach(function(item){
+					//console.log(item.name);
+					var testMesh = item;
+					testMesh.centroid = new THREE.Vector3();
+					
+					var verticesArray = testMesh.geometry.attributes.position.array;
+					for (var i = 0, l = verticesArray.length; i < l; i=i+3) {
+						var floatA = new THREE.Vector3(verticesArray[i],verticesArray[i+1],verticesArray[i+2]);
+						testMesh.centroid.add(floatA);
+					}
+					testMesh.centroid.divideScalar((verticesArray.length+1)/3);
+					var offset = testMesh.centroid.clone();
+
+					testMesh.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(-offset.x, -offset.y, -offset.z));
+
+					testMesh.position.copy(testMesh.centroid);
+					testMesh.updateMatrixWorld();
+					//console.warn('potisiton', testMesh.position);
+					let index = testMesh.name.indexOf('camera');
+					// 获取摄像机3d模型对象
+					if(index != -1){
+						// console.warn('camera', testMesh);
+						let cameraNum = testMesh.name.substring(index+7);
+						for(i=0;i<12;i++){
+							//console.log('No[i]', No[i]);
+							if(No[i]==parseInt(cameraNum)){
+								cameraGroup[i] = testMesh;
+								//console.log('cameraGroup'+i+' '+cameraGroup[i].name)
+							}
+						}
+					}
+					else{
+						// 获取楼梯
+						index =  testMesh.name.indexOf('StraightStair');
+						if (index != -1) {
+							var meshMaterial = item.material;
+							if (Array.isArray(meshMaterial)) {
+								meshMaterial.forEach(function (iMaterial) {
+									iMaterial.transparent = true;
+									iMaterial.opacity = 0.5;
+								})
+							}
+							else {
+								meshMaterial.transparent = true;
+								meshMaterial.opacity = 0.5;
+							}
+						}
+					}
+					if(testMesh.name == 'Line001'){
+					  wallMaterial = testMesh.material;
+					}
+				})
+				// console.warn('SpotlightGroup', SpotlightGroup);
+
+			
+				ChildrenObj = obj.children;
+				//console.log('ChildrenObj',ChildrenObj);
+				//let object = obj;
+				obj.scale.set( 1, 1, 1);
+				obj.position.set(0, -4, 0);
+				obj.rotation.set(Math.PI/2, 0, 0 );
+
+
+				obj.children.forEach(function(item){
+					item.castShadow =true; //  可产生阴影
+					// console.log('item',item.name);
+					//item.receiveShadow = true; // 设置网格为接受阴影的投影面
+				})
+				// obj.children[0].castShadow = false;
+				//obj.children[0].receiveShadow = true; // 墙壁可接收阴影
+				// obj.children[87].castShadow = false;
+				// obj.children[87].receiveShadow = true;//地板可接收阴影
+
+				// var wallMaterial = obj.children[0].material; // wall material
+				wallMaterial.transparent = true; //设置墙体材质透明度
+				wallMaterial.opacity = 0.5;
+
+				
+				// var roomFloorMaterial = ChildrenObj[88].material;
+				// // ChildrenObj[88].receiveShadow = true;
+				// roomFloorMaterial.transparent = false;
+				// roomFloorMaterial.opacity = 1;
+				
+
+				scene.add(obj);
+				});
+		
+			});
+		
+
+
+		// loader text
+		var loader = new FontLoader(); 
+   	 	loader.load('./font/chineseFont.json', function (resFont) { 
+			tagfont = resFont;
+    	});
+	
+		// 光源设置
+			// 平行光源
+		const dirLight1 = new THREE.DirectionalLight( 0xfffeee,0.9,0 );
+		dirLight1.position.set( 0, 0, 10);
+		// console.log('dirLight1.shadowCameraVisible',dirLight1);
+		
+		
+
+		dirLight1.castShadow = true;
+		dirLight1.shadow.camera.left=-50;
+        dirLight1.shadow.camera.right=50;
+        dirLight1.shadow.camera.top=-50;
+        dirLight1.shadow.camera.bottom=50;	
+		dirLight1.shadow.mapSize.width = 4096;
+		dirLight1.shadow.mapSize.height = 4096;
+
+		// scene.add( dirLight1 );
+		// var helper = new THREE.CameraHelper( dirLight1.shadow.camera );
+		//scene.add( helper );
+
+		const dirLight2 = new THREE.DirectionalLight( 0x002288 );
+		dirLight2.position.set( - 1, - 1, - 1 );
+		// scene.add( dirLight2 );
+
+		// dirLight2.castShadow = true;
+
+		// const dirLight3 = new THREE.DirectionalLight(  0xfffeee, 0.5,0 );
+		// dirLight3.position.set( 0, 0, 10);
+		// dirLight3.castShadow = true;
+		// scene.add(dirLight3);
+
+		const ambientLight = new THREE.AmbientLight( 0xdddddd );
+		ambientLight.intensity = 2.75;
+		scene.add( ambientLight );
+
+
+		// 渲染器
+		renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.shadowMap.enabled = true; //开启阴影
+		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+		document.body.appendChild( renderer.domElement );
+
+		//标签渲染器
+		labelRenderer = new CSS2DRenderer();
+		labelRenderer.setSize( window.innerWidth, window.innerHeight );
+		labelRenderer.domElement.style.position = 'absolute';
+		labelRenderer.domElement.style.top = '0px';
+		document.body.appendChild( labelRenderer.domElement );
+		
+		// TrackballControls轨迹球控制器
+	    camControls = new TrackballControls(camera, labelRenderer.domElement);
+		/* 属性参数 */
+		camControls.rotateSpeed = 3.5;// 旋转速度
+        camControls.zoomSpeed = 1;// 缩放速度
+        camControls.panSpeed =  1;// 平controls
+
+        camControls.staticMoving = false;// 静止移动，为 true 则没有惯性
+        camControls.dynamicDampingFactor = 0.2;// 阻尼系数 越小 则滑动越大
+
+        camControls.minDistance = 0; // 最小视角
+        camControls.maxDistance = 400;// 最大视角 Infinity 无穷大
+		// camControls.target.copy(new THREE.Vector3(-3, -13,-0.15)); //  摄像头初始视角
+
+		// ui three.js 提供的gui 图像界面
+		guiParas = {
+		   wallVisible: true,
+		   wallOpacity:0.5,
+		   personScale:2.5,
+           maxCameraNum:3,
+		   cameraIcon: true,
+        };
+
+		var gui =new GUI( { width: 310 } );
+		// let folderLocal = gui.addFolder("camera");
+		// 使用gui控制墙壁的显示与隐藏
+		// 设置墙壁显示与隐藏按钮
+		gui.add(guiParas, "wallVisible").onChange(function (val) {
+			// console.warn('val', val);
+			ChildrenObj.forEach(function (item) {
+				// console.log(item.name);
+				let index = item.name.indexOf('camera');
+				if (item.name != 'Floor' && index == -1) {
+					index = item.name.indexOf('light');
+					if (index == -1) { item.visible = val; }
+				}
+			})
+		});;
+
+		
+		// 设置墙壁透明度的按钮
+		gui.add(guiParas, "wallOpacity", 0.1, 1).onChange(function (val){
+			// console.log('wallOpacity',ChildrenObj[0]);
+			wallMaterial.opacity = val;
+		});
+		// 设置行人大小按钮
+		gui.add(guiParas, "personScale", 1, 4).onChange(function(val){
+			personSize = val;
+			let personlist = persongroup.children;
+			for(let i=0;i<personlist.length;i++){
+				personlist[i].scale.set(val,val,val);
+			}
+		});
+		// 控制面板中添加设置摄像头最大数量的选项
+		gui.add(guiParas, "maxCameraNum", 1, 12).step(1);// 后面多的2个参数是拉动条的最大和最小值
+		
+		gui.add(guiParas, "cameraIcon").onChange(function (val) {
+			// enableIconRender = val;
+			let tag = 'hidden';
+			if(val){
+				tag = 'visible';
+			}
+			let len = $('.icon').length;
+			// console.warn('cameraIcon', $('.icon'));
+			for(let x= 0; x<len; x++){
+				$('.icon')[x].style.visibility = tag;
+			}
+		});;
+		
+
+		window.addEventListener( 'resize', onWindowResize );
+		
+		//set eage
+		var border = [];
+		var borderMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000, flatShading: true } );
+		for(var i=0 ; i<20; i++){
+			border[i] = new THREE.CylinderBufferGeometry(0.05, 0.05, 2, 100);
+			border[i] = new THREE.Mesh(border[i],borderMaterial);
+			border[i].rotation.set(Math.PI/2, 0, 0)
+			// scene.add(border[i]);
+		}
+
+		borderPo[0] = new THREE.Vector3(35.5,27.5,2);
+		borderPo[1] = new THREE.Vector3(35.85,25.24,2);
+		borderPo[2] = new THREE.Vector3(5, 22.5, 2);
+		borderPo[3] = new THREE.Vector3(-4.25, 22.75, 2);
+		borderPo[4] = new THREE.Vector3(-34.75, 28.5, 2);
+		borderPo[5] = new THREE.Vector3(-35.25, 26.25, 2);
+		borderPo[6] = new THREE.Vector3(-0.75, 19.75, 2);
+		borderPo[7] = new THREE.Vector3(-0.75, 6.2, 2);
+		borderPo[8] = new THREE.Vector3(-3, 6.2, 2);
+		borderPo[9] = new THREE.Vector3(-3.25, -6, 2);
+		borderPo[10] = new THREE.Vector3(-0.75, -6, 2);
+		borderPo[11] = new THREE.Vector3(-1, -19.25, 2);
+		borderPo[12] = new THREE.Vector3(1.25, -19.25, 2);
+		borderPo[13] = new THREE.Vector3(35.5, -26, 2);
+		borderPo[14] = new THREE.Vector3(1.75, 19.75, 2);
+
+		borderPo[15] = new THREE.Vector3(-4.5, -22.5, 2);
+		borderPo[16] = new THREE.Vector3(4.5, -22.5, 2);
+
+		borderPo[17] = new THREE.Vector3(35.2, -28.25, 2);
+		borderPo[18] = new THREE.Vector3(-35, -27.5, 2);
+		borderPo[19] = new THREE.Vector3(-35.5, -25, 2);
+
+		for( i=0;i<20;i++){
+			border[i].position.set(borderPo[i].x, borderPo[i].y, borderPo[i].z);
+		}
+
+		
+		//获取世界坐标函数： localToWorld()！！！！！！
+
+		// border[0].position.set(borderPo[0].x, borderPo[0].y, borderPo[0].z);
+		// border[1].position.set(borderPo[1].x, borderPo[1].y, borderPo[1].z);
+		// border[2].position.set(borderPo[2].x, borderPo[2].y, borderPo[2].z);	
+		// border[3].position.set(borderPo[3].x, borderPo[3].y, borderPo[3].z);
+		// border[4].position.set(borderPo[4].x, borderPo[4].y, borderPo[4].z);
+		// border[5].position.set(borderPo[5].x, borderPo[5].y, borderPo[5].z);
+		// border[6].position.set(borderPo[6].x, borderPo[6].y, borderPo[6].z);
+		// border[7].position.set(borderPo[7].x, borderPo[7].y, borderPo[7].z);
+		// border[8].position.set(borderPo[8].x, borderPo[8].y, borderPo[8].z);
+		// border[9].position.set(borderPo[9].x, borderPo[9].y, borderPo[9].z);
+		// border[10].position.set(borderPo[10].x, borderPo[10].y, borderPo[10].z);
+		// border[11].position.set(borderPo[11].x, borderPo[11].y, borderPo[11].z);
+		// border[12].position.set(borderPo[12].x, borderPo[12].y, borderPo[12].z);
+		// border[13].position.set(borderPo[13].x, borderPo[13].y, borderPo[13].z);
+		// border[14].position.set(borderPo[14].x, borderPo[14].y, borderPo[14].z);
+		// border[15].position.set(borderPo[15].x, borderPo[15].y, borderPo[15].z);
+		// border[16].position.set(borderPo[16].x, borderPo[16].y, borderPo[16].z);
+		// border[17].position.set(borderPo[17].x, borderPo[17].y, borderPo[17].z);
+		// border[18].position.set(borderPo[18].x, borderPo[18].y, borderPo[18].z);
+		// border[19].position.set(borderPo[19].x, borderPo[19].y, borderPo[19].z);
+	}
+
+
+	// 渲染函数
+	function animate() {
+		let dir = new THREE.Vector3(0,0,0);
+		// console.warn('cameraPos',camera.position,'cameraDerection',camera.getWorldDirection(dir));
+			
+		// console.warn('guiParas',guiParas);
+		// 渲染摄像头的图标videoTime
+		if(enableIconRender==true){
+			renderDiv();
+		}
+
+		stats.update();
+		// 渲染摄像头和视频的连线
+		//renderLine();
+
+		requestAnimationFrame( animate );
+		var T = clock.getDelta();
+		// console.log('t',T,1/T);
+		camControls.update(T);
+
+		// console.log('tag',iconTagGroup[0]);
+		for(var i=0; i<24; i++){
+			if(videoGroup[i].children[1].style.visibility == 'visible'){
+				let x = videoGroup[i].children[1].currentTime;
+				let offset = x - parseFloat(frameCount/20);
+				let deltaOffset = offset - lastOffset;
+				// console.log('videoTime', x, 'frameTime', (parseFloat(frameCount)/20),'offset', offset, 'deltaOffset', deltaOffset);
+
+				offsetQueue.push(offset);
+				if(offsetQueue.length > 100){
+					offsetQueue.shift();
+				}
+				let avg1 = getAvg(offsetQueue);
+
+				console.log('offset',offset.toFixed(4), 'deltaOffset', deltaOffset.toFixed(4), 'renderT', renderT.toFixed(4),'avgoffset',avg1.toFixed(4));
+				if (deltaOffset * offset > 0) {
+					// 场景速度过慢
+					if (offset > 0) {
+						renderT -= 0.001;
+					}
+					// 场景速度过快
+					else if (offset < 0) {
+						renderT += 0.001;
+					}
+				}
+
+				lastOffset = offset;
+				break;
+			}
+
+		}
+		
+		// refreshTime = refreshTime + T;
+		// if(refreshTime>3){
+		// 	for(var i=0; i<24; i++){
+		// 	if(videoGroup[i].children[1].style.visibility == 'visible'){
+		// 		videoGroup[i].children[1].currentTime = frameCount/20;
+		// 	}
+		// 	refreshTime=0;
+		// }
+		// }
+
+
+
+		refreshTime = refreshTime + T;
+		if(refreshTime >= 5){
+			//console.log('refreshTime', refreshTime);
+			refreshTime = 0;
+			for(let i=0;i<24;i++){
+				if(videoGroup[i].children[1].style.visibility=='visible'){
+					let x = videoGroup[i].children[1].currentTime;
+					let offset = x - parseFloat(frameCount / 20); //计算偏移
+					// console.log('videoTime', x, 'frameTime', (parseFloat(frameCount) / 20), 'offset', offset);
+					if( Math.abs(offset) >= 1){ //检测到场景和视频在世界上偏移超过1秒后，通过设置视频进度对两者进行同步
+						for(let j=0;j<24;j++){
+							if(videoGroup[j].children[1].style.visibility=='visible'){
+								videoGroup[j].children[1].currentTime = parseFloat(frameCount / 20);
+							}
+						}
+					}
+					break;
+				}
+			}
+		}
+		
+		
+		timeS = timeS + T;
+		renderer.render( scene, camera );
+		labelRenderer.render( scene, camera );
+		if (timeS >= renderT) {
+			// console.warn('timeS', timeS);
+			// var time1 = new Date().getTime();
+
+			// console.log('frameCount', frameCount,'farmeNum',frameNum);
+			if (frameCount < 600 && frameCount >= 0){
+				let pos;
+				pos = posgroup[frameCount];
+				// console.warn('pos', pos, pos.length);
+
+				
+				// 这一帧检测到位置时才渲染位置
+				if (true) {
+					let personlist = persongroup.children;
+					for (var i = 0; i < personlist.length; i++) {
+						var m = perinpos(personlist[i], pos);
+						if (m) {
+							if (faceEnable) {
+								// 已有身份时绘制人脸
+								if (pos[m - 1][4] != 'None') {
+									renderFaceIcon(personlist[i], pos[m - 1][4], pos[m - 1][5]);
+									console.warn('personi', personlist[i]);
+									personlist[i].visible = false;
+								} else {
+									let s = 'faceIcon' + personlist[i].name.toString();
+									personlist[i].visible = true;
+									if ($(document.getElementById(s)).length != 0) {
+										$(document.getElementById(s)).css({
+											visibility: 'hidden',
+										});
+									}
+								}
+							}
+							
+							//time
+							var posTime = pos[m - 1][3];
+							// console.log('framecount!', frameCount, 'no',personlist[i].name,'name', pos[m-1][4]);
+							frameNum = pos[m - 1][4];
+
+							
+							// position
+							var newpos = new THREE.Vector2(pos[m - 1][0], pos[m - 1][1]);
+							newpos = borderlimit(newpos);
+							var disx = newpos.x - personlist[i].position.x;
+							var disy = newpos.y - personlist[i].position.y;
+							personlist[i].position.x = parseFloat(personlist[i].position.x) + disx;
+							personlist[i].position.y = parseFloat(personlist[i].position.y) + disy;
+
+						}
+						else { 
+							if (faceEnable) {
+								let s = 'faceIcon' + personlist[i].name.toString();
+								if ($(document.getElementById(s)).length != 0) {
+									$(document.getElementById(s)).css({
+										visibility: 'hidden',
+									});
+								}
+							}
+							persongroup.remove(personlist[i]);
+						}
+					}
+
+					for (var i = 0; i < pos.length; i++) {
+						if (!posinper(personlist, pos[i])) {
+							// 测试视频使用
+							if (typeof (tagfont) != 'undefined') {
+								addperson(pos[i]);
+							}
+						}
+					}
+				}
+			}
+			// var date = new Date();
+			// // let lastSeconds = date.getMilliseconds();
+			// newSeconds = date.getTime();
+			// let offset = newSeconds - lastSeconds;
+			// lastSeconds = date.getTime();
+			// console.log('frame', frameCount, 'date', date.getSeconds(),' ', date.getMilliseconds(), 'offset' , offset);
+			// console.log('frameCount', frameCount);
+			frameCount++;
+			// var time2 = new Date().getTime();
+			// var offetTime = time2 - time1;
+			// console.log('rnderClock',time1, time2, offetTime,timeS);
+			timeS = 0;
+		}
+	
+		if (frameCount >= 600 ){
+			frameCount = 0;
+			loadposition();
+			count = count+1;
+		}
+	}
+	
+	// 判断位置和行人是否对应的函数
+	function perinpos(person,pos){
+		for(var k = 0; k < pos.length; k++){
+			if(pos[k][2]==person.name){
+				return k+1;
+			}
+		}
+		return false;
+	}
+
+	function posinper(personlist,pos){
+		for(var k = 0; k < personlist.length; k++){
+			if(personlist[k].name==pos[2]){
+				return true;
+			}
+		}
+		return false ;
+	}
+
+	function foundsimilar(person,pos){
+		var similarlist=[]
+		for(var k = 0; k < pos.length; k++){
+			var similar=Math.pow(pos[k][0]-person.position.x,2)+Math.pow(pos[k][1]-person.position.y,2)
+			similarlist.push(similar)
+		}
+		var min=9999999;
+		var t=0;
+		for(var i = 0; i < similarlist.length; i++){
+			if(similarlist[i]<min){
+				t=i;
+				min=similarlist[i];
+			}
+		}
+		if (similarlist[t]<2){
+			return [pos[t][0]-person.position.x,pos[t][1]-person.position.y]
+		}else {
+			return [0,0]
+		}
+	}
+
+	function addperson(po){
+		
+		// var color=[1.0,0.5,0.3333333333333333,1,1,1,0.14285714285714285,0.125,0.1111111111111111,0.1,
+		// 0.09090909090909091,0.08333333333333333,0.07692307692307693,0.07142857142857142,0.06666666666666667,0.0625,
+		// 0.058823529411764705,0.05555555555555555,0.05263157894736842,0.05];
+		//console.log('po2:',po[2]);
+		// var c = 0x111111;
+		// // var pername = 'M';
+		// //console.log('po2',po[2])
+		// if(po[2]== 1){
+		// 	c = 0x0040FF;
+		// 	//pername = 'K';
+		// }else if(po[2] == 0){
+		// 	c = 0xDF0101;
+		// }else{
+		// 	c = 0xff0fff*color[po[2]%20];
+		// }
+		//0xff0fff*color[po[2]%20]
+		var geometry = new THREE.SphereGeometry(0.25, 60, 60);
+		// var personColor = colorList[persongroup.children.length%(colorList.length)];
+		var personColor = colorList[po[2]%(colorList.length)];
+		let identity = 'faceIcon' + po[2];
+		
+		
+		if( faceEnable && $(document.getElementById(identity)).length == 0 ){
+			let divObj = document.createElement('div');
+			divObj.setAttribute('class', 'faceIcon');
+			// divObj.innerText = 'Python';
+			divObj.setAttribute('id', 'faceIcon' + po[2]);
+			// console.warn('divObj', divObj);
+			document.body.appendChild(divObj);
+		}
+
+
+		// console.warn('no',po[2],'name',po[3],'color',(po[2]%(colorList.length)), personColor);
+
+		// let divObj = document.createElement('div');
+		// divObj.setAttribute('class', 'faceIcon');
+		// // divObj.innerText = 'Python';
+		// divObj.setAttribute('id', 'faceIcon' + po[2]);
+		// console.warn('divObj', divObj);
+		// document.body.appendChild(divObj);
+		var material = new THREE.MeshPhongMaterial( { color: personColor, flatShading: true } );
+		// var material = new THREE.MeshPhongMaterial({color: 0xFFFFFF *Math.random(), flatShading: true});
+	
+		var person = new THREE.Mesh(geometry,material);
+		person.castShadow = true;
+		// add text
+		var geometry = new TextGeometry(po[2], {
+				font: tagfont,          // 字体格式
+				size: 14,           // 字体大小
+				height: 0,          // 字体深度
+				curveSegments: 11,  // 曲线控制点数
+				bevelEnabled: true, // 斜角
+				bevelThickness: 0.1,  // 斜角的深度
+				bevelSize: 1,       // 斜角的大小
+				bevelSegments: 1    // 斜角段数
+		});
+
+		let fontClor = 'black';
+		if(personColor == '#000000'){
+			fontClor = 'white';
+		}
+
+		var mat = new THREE.MeshPhongMaterial({
+			color: fontClor,
+			opacity: 0.8,
+			shininess: 1,
+		});
+
+			textmesh = new THREE.Mesh(geometry, mat);
+			//console.log("text:", textmesh);
+			textmesh.scale.set(0.02,0.02,0.02);
+			textmesh.rotation.set(-Math.PI/2,0,0);
+			textmesh.position.set(-0.15,0.25,0.05);
+			
+		person.add(textmesh);
+
+		// //clone the person model
+		// var person = SkeletonUtils.clone(character); 
+		// //console.log("person",person);
+		// person.animations = character.animations;
+		// person.mixer = new THREE.AnimationMixer(person);
+		// animationAction[0] = person.mixer.clipAction(person.animations[0]);
+		// animationAction[0].play();
+
+
+		
+		person.position.set(po[0],po[1], 2.5);
+		person.rotation.set(Math.PI/2, 0, 0);
+		person.scale.set(personSize,personSize,personSize);
+		// console.warn('addperson!', person);
+		person.name = po[2];
+
+		// person.centroid = new THREE.Vector3();
+		// var verticesArray = person.geometry.attributes.position.array;
+		// for (var i = 0, l = verticesArray.length; i < l; i = i + 3) {
+		// 	var floatA = new THREE.Vector3(verticesArray[i], verticesArray[i + 1], verticesArray[i + 2]);
+		// 	person.centroid.add(floatA);
+		// }
+		// person.centroid.divideScalar((verticesArray.length + 1) / 3);
+		// var offset = person.centroid.clone();
+
+		// person.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(-offset.x, -offset.y, -offset.z));
+
+		// person.position.copy(person.centroid);
+		// person.updateMatrixWorld();
+
+		persongroup.add(person);
+
+		
+		//if (personlist.length>20){
+		//	persongroup.remove(personlist[0])
+		//}
+	}
+
+	function loadposition(){
+		let txtFormat = 'position_all';
+		if(faceEnable){
+			txtFormat = 'position_all';
+		}
+		let text = load(file + txtFormat + '-' + txtnum.toString() + '.txt');
+		// console.warn("name:", '-'+txtnum.toString()+'.txt');
+		var list = text.split('\n');
+                if (list.length==1){list = text.split('\r\n');}
+		posgroup = new Array();
+		for(let k=0;k<601;k++){
+			posgroup[k]=new Array();
+			}
+		for(let key in list){
+			var tmp = list[key].split(' ')
+			//console.warn('tmp', tmp);
+			var fid = tmp[0];
+			var x = (tmp[1]);
+			var y = (tmp[2]);
+			var id = (tmp[3]);
+			if(faceEnable){
+				var identity = (tmp[5]); //face identity
+				var faceId = (tmp[6]); 
+			}
+
+			if (typeof(posgroup[fid])=="undefined"){
+				if(faceEnable){
+					posgroup[fid] = [[x, y, id, fid, identity, faceId]];
+				}
+				else{
+					posgroup[fid] = [[x, y, id, fid]];
+				}
+			}
+			else {
+				if(faceEnable){
+					posgroup[fid].push([x, y, id, fid, identity, faceId]);
+				}
+				else{
+					posgroup[fid].push([x, y, id, fid]);
+				}
+			}
+			}
+		txtnum++;
+		// for(let k=0;k<601;k++){
+		// 	console.warn('posgroup k', k, posgroup[k], posgroup[k].length);
+		// }
+	}
+
+	function checkpos(i, j, pos, tag){
+		var x = pos.x;
+		var y = pos.y;
+		// 计算边界直线方程
+		var k = (borderPo[i].y-borderPo[j].y)/(borderPo[i].x-borderPo[j].x);
+		var b = borderPo[i].y - k*borderPo[i].x;
+		var a0 = k*0 + b - 0;
+		var a = k*pos.x + b - pos.y;
+		if(tag == 1){ a0 = -a0 };
+		if( a*a0 < 0 ){ // 位置在地图边界直接之外，做垂线计算交点
+			var k1 = 1/k;
+			var b1 = y - k1 * x;
+			x = (b-b1)/(k1-k);
+			y = k*x+b;
+			if(i==5&&j==6){
+				//console.log("border56");
+			}
+		}else {
+			if(i==5&&j==6){
+				//console.log("a0",a0,"a",a,"x",x,"y",y);
+			}
+		}
+		
+		var res = new THREE.Vector2(x,y);
+		//console.log("check,res",res);
+		return res;
+	}
+
+	function borderlimit(pos){// 限制人物在地图内移动	
+		var res = new THREE.Vector2(pos.x,pos.y);
+		// border1
+		if(res.y > borderPo[1].y && res.y < borderPo[0].y){
+			res = checkpos(0,1,pos);
+		}
+
+
+		// border2
+		if( res.x > borderPo[2].x && res.y > borderPo[2].y ){
+			res = checkpos(0,2,res,0);
+			//console.log("border2 res:",res);
+		}
+		
+
+		// border3
+		if( res.x < borderPo[2].x && res.x > borderPo[3].x && res.y > 0 ){
+			res = checkpos(2,3,res,0);
+			//console.log("border3 res:",res);
+		}
+		
+
+		// border4
+		if( res.x < borderPo[3].x ){
+			res = checkpos(3,4,res,0);
+			//console.log("border4 res:",res);
+		}
+		
+
+		// border5
+		if(true){
+			res = checkpos(4,5,res,0);
+			//console.log("border5 res:",res);
+		}
+		
+
+		// border6
+		if( res.x <= borderPo[6].x && res.y > 0.5*(borderPo[6].y+ borderPo[7].y)){
+			res = checkpos(5, 6, res, 1);
+			//console.log("border6 res:",res);
+		}
+		
+
+		
+		// border7
+		if( res.y <= borderPo[6].y && res.y >= borderPo[7].y ){
+			if( res.x < borderPo[7].x ) {res.x = borderPo[7].x};
+			//console.log("border7 res:",res);
+		}
+		
+
+		// border8
+		if( res.x <= borderPo[7].x && res.x >= borderPo[8].x && res.y < 0.5*(borderPo[6].y+borderPo[7].y) ){
+			if( res.y > borderPo[8].y  ) {res.y = borderPo[8].y };
+			//console.log("border8 res:",res);
+		}
+
+		// border9
+		if( res.y <= borderPo[8].y && res.y >= borderPo[9].y ){
+			if( res.x < borderPo[8].x  ) {res.x = borderPo[8].x };
+			//console.log("border9 res:",res);
+		}
+
+		// border10
+		if( res.y <= borderPo[8].y && res.y >= borderPo[9].y ){
+			if( res.x < borderPo[8].x  ) {res.x = borderPo[8].x };
+			//console.log("border10 res:",res);
+		}
+
+		// border11
+		if( res.y <= borderPo[10].y && res.y >= borderPo[11].y ){
+			res = checkpos(10,11,res,0);
+			//console.log("border11 res:",res);
+		}
+
+		// border12
+		if( res.x <= borderPo[13].x && res.x >= borderPo[12].x && res.y<0){
+			res = checkpos(12,13,res,1);
+			//console.log("border12 res:",res);
+		}
+
+		// border13
+		if( res.y <= borderPo[14].y && res.y >= borderPo[12].y && res.x>0){
+		res = checkpos(12,14,res,0);
+			//console.log("border13 res:",res);
+		}
+
+		// border14
+		if( res.x >= borderPo[15].x && res.x <= borderPo[16].x && res.y < borderPo[12].y){
+			if(res.y<borderPo[15].y){res.y=borderPo[15].y};
+			//console.log("border14 res:",res);
+		}
+
+		// border15
+		if( res.x >= borderPo[16].x && res.x <= borderPo[17].x && res.y < borderPo[16].y){
+			res = checkpos(16,17,res,0);
+			//console.log("border15 res:",res);
+		}
+
+		// border16
+		if( res.x >= borderPo[18].x && res.x <= borderPo[15].x && res.y < borderPo[15].y){
+			res = checkpos(18,15,res,0);
+			//console.log("border16 res:",res);
+		}
+
+		// border17
+		if( res.y >= borderPo[18].y && res.y <= borderPo[19].y){
+			res = checkpos(19,18,res,0);
+		}
+
+		// border18
+		if( res.y >= borderPo[17].y && res.y <= borderPo[13].y){
+			res = checkpos(13,17,res,0);
+		}
+
+		// border19
+		if( res.x >= borderPo[19].x && res.x <= borderPo[11].x && res.y<borderPo[11].y){
+			res = checkpos(19,11,res,1);
+		}
+
+		// border20
+		if( res.x >= borderPo[14].x && res.x <= borderPo[1].x && res.y>borderPo[14].y){
+			res = checkpos(1,14,res,1);
+		}
+		return res;
+	}
+
+
+	function load(name) {
+		// console.log('name:',name);
+		let xhr = new XMLHttpRequest(),
+			okStatus = document.location.protocol === "file:" ? 0 : 200;
+                try {
+		    xhr.open('GET', name, false);
+		    xhr.overrideMimeType("text/html;charset=utf-8");//默认为utf-8
+		    xhr.send(null);
+                    }
+                catch (DOMException) {
+    	            console.log("DOMException");
+                    load(name);
+                } 
+		return xhr.status === okStatus ? xhr.responseText : null;
+	}
+
+	//定义键盘按键事件
+	function setKeyEvents(){
+        window.addEventListener('keydown',function(e){
+        //console.log(e);
+		//code: "KeyA"
+
+		if(e.code == 'KeyQ'){
+			ChildrenObj.forEach(function(item){
+			// console.log(item.name);
+				let index = item.name.indexOf('camera');
+				if(item.name != 'Floor' && index == -1){
+					index = item.name.indexOf('light');
+					if(index ==-1){ item.visible = !item.visible; }
+				}
+			})
+		}
+
+        }); 
+        }
+	
+	//定义鼠标点击事件
+	function onMouseClick(event) {
+		// 获取 raycaster 和所有模型相交的数组，其中的元素按照距离排序，越近的越靠前
+		var intersects = getIntersects(event);
+
+		// 获取选中最近的 Mesh 对象
+		if (intersects.length !== 0 && intersects[0].object instanceof THREE.Mesh) {
+			selectObject = intersects[0].object;
+			
+			// console.warn('selectObject:',selectObject.name,selectObject.position);
+
+			
+			// // 点击到摄像头显示对应视频
+			// if (selectObject.name.indexOf('camera') != -1) {
+			// 	// 获取窗口的一半高度和宽度
+			// 	let halfWidth = window.innerWidth / 2;
+			// 	let halfHeight = window.innerHeight / 2;
+
+			// 	// 逆转相机求出二维坐标
+			// 	selectObject.updateMatrixWorld(); //更新物体世界坐标矩阵
+			// 	var vector = new THREE.Vector3();
+			// 	vector.setFromMatrixPosition(selectObject.matrixWorld);
+			// 	vector.project(camera);
+
+			// 	//获取摄像头编号
+			// 	let cameraNum = selectObject.name.slice(-2);
+			// 	// 找到对应的视频
+			// 	let videoIndex = -1;
+			// 	let videoNumIdx = -1;
+			// 	for(let i=0;i<12;i++){
+			// 		if(No[i] == parseInt(cameraNum)){
+			// 			videoIndex = i;
+			// 			videoNumIdx = i;
+			// 			//console.warn('videoIndex', videoIndex);
+			// 		}
+			// 	}
+
+
+
+			// 	let x = count%2;
+			// 	if(x == 0){
+			// 		videoIndex = videoIndex + 12;
+			// 	}
+
+			// 	let videoI = videoGroup[videoIndex].children[1];
+			// 	videoI.pause();
+			// 	videoNumGroup[videoNumIdx] = count;
+			// 	videoI.src = file + cameraNum + '-' + String(videoNumGroup[videoNumIdx]) + '.mp4';
+
+			// 	// 设置video标签位置
+			// 	let left = vector.x * halfWidth + halfWidth;
+			// 	let top = -vector.y * halfHeight + halfHeight - selectObject.position.y;
+			// 	console.log('left', left, 'top', top, typeof (left));
+			// 	$("#cVideo" + (videoIndex + 1).toString()).css({
+			// 		left: left,
+			// 		top: top
+			// 	});
+
+
+
+				
+			// 	videoI.currentTime = offetTime;
+			// 	// for (let i = 0; i < 12; i++) {
+			// 	// 	if (videoGroup[i].children[1].style.visibility == 'visible' && i != videoIndex) {
+			// 	// 		videoI.currentTime = videoGroup[i].children[1].currentTime;
+			// 	// 		break;
+			// 	// 	}
+			// 	// }
+
+			// 	videoI.play();
+			// 	videoI.style.visibility = 'visible';
+			// 	videoGroup[videoIndex].children[0].style.visibility = 'visible';
+			// 	enableDrag(videoGroup[videoIndex], videoIndex, (el, ev) => {//移动回调，在移动时顺便做点事情
+			// 	})//限流间隔
+
+			// 	// 缓冲下一段视频
+			// 	let j = 0;
+
+			// 	if (videoIndex < 12) {
+			// 		j = videoIndex+12;
+			// 	}else{
+			// 		j = videoIndex-12;
+			// 	}
+			// 	console.log('now',videoIndex,'next',j);
+			// 	let videoJ = videoGroup[j].children[1];
+			// 	videoJ.src = file + cameraNum + '-' + String(videoNumGroup[videoNumIdx]+1) + '.mp4';
+			// 	videoJ.pause();
+
+			// }
+
+			// videoI.onloadedmetadata = function () {
+			// 	// You should be able to request the picture in picture API from here
+			// 	// Request on my dom element
+			// 	videoI.currentTime = offetTime;
+			// 	for (var i = 0; i < 12; i++) {
+			// 		if (videoI.style.visibility == 'visible' && i != videoIndex) {
+			// 			let x = videoI.currentTime;
+			// 			videoI.currentTime = x;
+			// 			break;
+			// 		}
+			// 	}
+			// 	videoI.play();
+			// 	videoI.style.visibility = 'visible';
+			// 	videoGroup[videoIndex].children[0].style.visibility = 'visible';
+			// };
+
+		}
+	}
+
+	// 获取与鼠标射线相交的对象数组
+	function getIntersects(event) {
+		event.preventDefault();
+		// console.log("event.clientX:"+event.clientX);
+		// console.log("event.clientY:"+event.clientY);
+
+		// 声明 raycaster 和 mouse 变量
+		var raycaster = new THREE.Raycaster();
+		var mouse = new THREE.Vector2();
+
+		// 通过鼠标点击位置,计算出 raycaster 所需点的位置,以屏幕为中心点,范围 -1 到 1
+		mouse.x = (event.clientX / (window.innerWidth)) * 2 - 1;
+		mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+		//通过鼠标点击的位置(二维坐标)和当前相机的矩阵计算出射线位置
+		raycaster.setFromCamera(mouse, camera);
+
+		// 获取与射线相交的对象数组，其中的元素按照距离排序，越近的越靠前
+		var intersects = raycaster.intersectObjects(scene.children);
+
+		//返回选中的对象
+		return intersects;
+		}
+
+	// 被点击物体的标签
+    function renderDiv() {
+		let d2 = new Date();
+		if(frameCount==0){
+			// console.warn('icon renderDiv', iconGroup,'time',d2.getMinutes(),'',d2.getSeconds(),d2.getMilliseconds());
+		}
+		// console.warn('.icon renderDiv', $('.icon'));
+        // 获取窗口的一半高度和宽度
+        let halfWidth = window.innerWidth / 2;
+        let halfHeight = window.innerHeight / 2;
+		for(let i=0; i<12; i++){
+			if(cameraGroup[i]){
+				// console.log('cameraGroup[i]', cameraGroup[i]);
+				let object = cameraGroup[i];
+				
+				// console.log(' renderDiv object' ,object)
+				// 逆转相机求出二维坐标
+				object.updateMatrixWorld(); // 在获取前先更新下对象的世界坐标/世界矩阵！！！
+				var vector = new THREE.Vector3();
+				vector.setFromMatrixPosition(object.matrixWorld);
+				vector.project(camera);
+				//console.log('name:' + object.name);
+				
+				// 修改 div 的位置
+				let name = "#icon" + i;
+				// console.warn('icon', $(name));
+				$(name).css({
+					left: vector.x * halfWidth + halfWidth,
+					top: -vector.y * halfHeight + halfHeight
+				});
+				if(iconTagGroup[i]){
+					// console.log('iconi',i,iconGroup[i]);
+					iconGroup[i].style.border = '3px solid red';
+				}else {
+					// console.log('i',i,iconGroup[i]);
+					iconGroup[i].style.border = '0px solid red';
+				}
+				// 显示模型信息
+				// $("#label").text("name:" + object.name);
+			}
+		}
+		
+    }
+
+	function renderFaceIcon(person,identity, faceId){
+		// 求出屏幕的一半
+		let halfWidth = window.innerWidth / 2;
+		let halfHeight = window.innerHeight / 2;
+
+		// let divObj = document.createElement('div');
+		// divObj.setAttribute('class', 'faceIcon');
+		// // divObj.innerText = 'Python';
+		// divObj.setAttribute('id', 'faceIcon1');
+
+		//把div添加到body作为他的子元素
+		// console.log('divObj', divObj);
+		// console.log(' renderDiv object' ,object)
+
+		//  添加图片
+		let fname = 'faceImg' + person.name;
+		let s = 'faceIcon' + person.name.toString();
+		if($(document.getElementById(fname)).length == 0){
+			let imgObj = document.createElement('img');
+			imgObj.setAttribute('class', 'faceImg');
+
+			let imgPath = '../gallery/'+ faceId.toString() + '/' + faceId.toString() + '.jpg';
+			// console.warn('imgPath', imgPath);
+			
+			imgObj.setAttribute('src', imgPath);
+			imgObj.setAttribute('id', fname);
+			// let lableObj = document.createElement('lable');
+			// lableObj.innerHTML = identity;
+			// document.getElementById(s).appendChild(lableObj);
+			document.getElementById(s).appendChild(imgObj);
+		}
+		
+		// 逆转相机求出二维坐标
+		// console.log('cameraGroup[i] person',person);
+		person.updateMatrixWorld(); // 在获取前先更新下对象的世界坐标/世界矩阵！！！
+		var vector1 = new THREE.Vector3();
+		vector1.setFromMatrixPosition(person.matrixWorld);
+		vector1.project(camera);
+		//console.log('name:' + object.name);
+        
+		// console.warn('s',s,$(document.getElementById(s)));
+		let left = vector1.x * halfWidth + halfWidth;
+		let top = -vector1.y * halfHeight + halfHeight;
+		// console.warn('left',left,'top', top);
+		
+		// 修改人脸图像ui的位置
+		$(document.getElementById(s)).css({
+			left: left-20,
+			top: top-20,
+			visibility: 'visible',
+		});
+		// console.warn('faceGroup',$('.faceIcon'));
+		
+		// divObj.setAttribute('left',  vector.x * halfWidth + halfWidth);
+		// divObj.setAttribute('top',  -vector.y * halfHeight + halfHeight - person.position.y);
+	}
+
+	function renderLine(){
+		// 获取窗口的一半高度和宽度
+        let halfWidth = window.innerWidth / 2;
+        let halfHeight = window.innerHeight / 2;
+		for (let i = 0; i < 12; i++) {
+			// 绘制直线
+			if (videoGroup[i].children[1].style.visibility == 'visible') {
+				cameraGroup[i].updateMatrixWorld(); //更新物体世界坐标矩阵
+				var vector = new THREE.Vector3();
+				vector.setFromMatrixPosition(cameraGroup[i].matrixWorld);
+				vector.project(camera);// 逆转相机求出二维坐标
+				///console.log('vector', vector);
+				var x1 = vector.x * halfWidth + halfWidth;
+				var y1 = -vector.y * halfHeight + halfHeight - cameraGroup[i].position.y;
+				var el = videoGroup[i];
+				//console.log('v1:', videoGroup[i].style.visibility);
+				lineGroup[i].setAttribute('x1', x1);
+				lineGroup[i].setAttribute('y1', y1);
+				lineGroup[i].setAttribute('x2', parseInt(el.style.left))
+				lineGroup[i].setAttribute('y2', parseInt(el.style.top))
+			}
+			else{
+				lineGroup[i].setAttribute('x1', 0);
+				lineGroup[i].setAttribute('y1', 0);
+				lineGroup[i].setAttribute('x2', 0);
+				lineGroup[i].setAttribute('y2', 0);
+			}
+		}
+	}
+
+	// 视频div拖动函数
+	function enableDrag(el,idx, cMove, t = 16) {
+		el.style.position = "absolute"
+		let ox, oy, mx, my
+		el.onmousedown = (ev) => {
+			let index1 = idx;
+			if(index1>=12){index1 = index1-12};
+			iconTagGroup[index1] = 1;
+			ox = parseInt(el.offsetLeft)
+			oy = parseInt(el.offsetTop)
+			mx = ev.pageX
+			my = ev.pageY
+			el.onmousemove = throttle(move, t)
+			el.onmouseup = stop
+		}
+		function move(ev) {
+			el.style.left = `${ox + ev.pageX - mx}px`
+			el.style.top = `${oy + ev.pageY - my}px`
+			if (cMove) {
+				cMove(el, ev)
+			}
+		}
+		function stop(ev) {
+			let index1 = idx;
+			if(index1>=12){index1 = index1-12};
+			iconTagGroup[index1] = 0;
+			el.onmousemove = el.onmouseup = null;
+		}
+
+		function throttle(fn, timeout = 100) {
+			let timer = null
+			return function (...args) {
+				if (!timer) {
+					fn(...args)
+					timer = setTimeout(() => timer = null, timeout)
+				}
+			}
+		}
+	}
+
+	function crash(person) {
+		let crashed = false;
+		var posArr = person.geometry.attributes.position.array;
+		var personvertices = [];
+		var tmpx,tmpy;
+		for (let i =0; i < posArr.length; i = i+ 3) {
+			let x = posArr[i];
+			let y = posArr[i + 1];
+			let z = posArr[i + 2];
+			let ppt = new THREE.Vector3(x, y, z);
+			personvertices.push(ppt);
+		}
+		for(var vertexIndex = 0; vertexIndex < personvertices.length; vertexIndex++){
+			var localVertex = personvertices[vertexIndex].clone();
+			var globalVertex = localVertex.applyMatrix4(person.matrix);
+			var directionVector = globalVertex.sub(person.position);
+			var ray = new THREE.Raycaster(person.position.clone(), directionVector.clone().normalize());
+			var collisionResults = ray.intersectObjects([floor],true);
+
+			// 判断是否碰撞
+			if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()){
+				crashed=true;
+				if (!tmpx || !tmpy){
+					tmpx = collisionResults[0].point.x;
+					tmpy = collisionResults[0].point.y;
+				}
+				else if (tmpx != collisionResults[0].point.x && tmpy == collisionResults[0].point.y)
+				{
+					return [crashed,'x'];
+				}
+				else if (tmpy != collisionResults[0].point.y && tmpx == collisionResults[0].point.x)
+				{
+					return [crashed,'y'];
+				}
+				else{
+					return [crashed,' '];
+				}
+			}
+		}
+		return [crashed,' '];
+	}
+	
+	function onWindowResize() {
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		labelRenderer.setSize( window.innerWidth, window.innerHeight );
+
+	}
+	function createText() {
+		const loader = new FontLoader();
+		const font = loader.load(
+			// 资源URL
+			'fonts/velvetier_bold.typeface.json',
+			// onLoad回调
+			function (font) {
+				// do something with the font
+				scene.add(font);
+			},
+			// onProgress回调
+			function (xhr) {
+				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+			},
+			// onError回调
+			function (err) {
+				console.log('An error happened');
+			}
+		);
+	}
+
+	function getAvg(array1) {
+		let x = 0;
+		for(let i=0;i<array1.length;i++){
+			x += array1[i];
+		}
+		x = x/array1.length;
+		return x;
+	}
+
+	//var videonum=0;
+
+
+
+</script>
+</body>
+</html>

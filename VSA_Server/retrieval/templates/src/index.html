@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>SPF</title>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+    <script src="/static/js/jquery-3.2.0.min.js"></script>
+    <script src="/static/js/spf.js"></script>
+</head>
+
+<body>
+  <div class="left">
+      <div id="probe">
+          <div>
+              <h3 style="color:black">查询图片</h3>
+              <button  id="load">load</button>
+              <button  id="query">query</button>
+           </div>
+      </div>
+  </div>
+
+
+  <div class="right">
+          <div><h5 id="rank" style="color:red"></h5></div>
+          <div id="show"></div>
+          <div id="feedback" style="display: none;">
+      <div style="float:left;margin-left: 100px;margin-top: 100px">
+          <img src="" class="img-thumbnail" alt="query_img" id="query_i" style='width:60px;height:156px'>&nbsp;&nbsp;&nbsp;
+          <img src="" class="img-thumbnail" alt="gallery_img" id="gallery_i" style='width:60px;height:156px'>
+      </div>
+      <div style="float:left;margin-left: 20px;margin-top: 100px">
+        <div>
+            torso： <input type="range" id="torso" max="1" min="-1" step="0.01">confidence :
+            <input type="text" id="torso_confidence" value="0">
+            <button id="save" value="save" style="height:30px;width:80px;" >save</button>
+        </div>
+        <div>
+            <span style="color:red;">Dissimilar</span>
+            <span style="color:yellow;margin-left:30px">Null</span>
+            <span style="color:green;margin-left:30px">similar</span>
+        </div>
+        <div style="margin-top:30px">
+            &nbsp;leg&nbsp;&nbsp;&nbsp;：<input type="range" id="leg" max="1" min="-1" step="0.01">confidence :
+            <input type="text" id="leg_confidence" value="0">
+            <button id="cancel" value="cancel" style="height:30px;width:80px;" >cancel</button>
+        </div>
+        <div>
+            <span style="color:red;">Dissimilar</span>
+            <span style="color:yellow;margin-left:30px">Null</span>
+            <span style="color:green;margin-left:30px">similar</span>
+        </div>
+    </div>
+</div>
+  </div>
+
+</body>
+</html>

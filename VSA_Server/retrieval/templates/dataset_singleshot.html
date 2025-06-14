@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block title %}主页{% endblock %}
+{% block content %}
+{#<div class="navbar-header">#}
+{#          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-nav" aria-expanded="false">#}
+{#            <span class="sr-only">切换导航条</span>#}
+{##}
+{#          </button>#}
+{#           <a class="navbar-brand" href="#">Person Re-identification online interactive system</a>#}
+{#        </div>#}
+
+
+<div  name = "mydiv" id="mydiv" class="a" style="position:absolute;left:0px;top:50px;width:1400px;height:581px">
+
+      <div id="probe" class="left" style="overflow:auto;height:100%" >
+          <h3 style="color:black">ProbeImages</h3>
+
+         <a href="javascript:;" accept="image/*" class="file">Load
+            <input type="file" name="" id="img_file" onchange="showPreview(this)">
+         </a>
+          <button id="query" type="button" class="file">Query</button>
+          <button id="restart" type="button" class="file">Restart</button>
+{#          <button id="refresh" type="button" class="file">Refresh</button>#}
+
+
+{#         <div id="loadimg"></div>#}
+{#          <button id="load"  type="button" class="btn btn-success">Load</button>#}
+{#          <button id="query" type="button" class="btn btn-primary">Query</button>#}
+
+            <div id="probeimg">
+                <div id="probename" style="font-size:5px "></div>
+                <img id="loadimg" src="" style="display:none;height:130px;float:left;" />
+                <div id="query2rank"  style="float:left; margin-left:10px" ></div>
+                <div id="cmc" style="float:left; margin-left:10px"></div>
+            </div>
+
+          <div id="rankandtime" >
+              <div id="line" style="display:none; margin-top:140px;margin-bottom:-20px"><hr style="border: 1px solid #555555"/></div>
+              <h5 id="time"  style="color:red;float:left;"></h5>
+              <h5 id="rank" style="color:red;float:left;margin-left:90px"></h5>
+              <h5 id="querytime" style="color:red;float:left;margin-left:90px"></h5>
+          </div>
+          <div id="tongji" >
+              <h5 id="statistics"  style="color:black;float:left"></h5>
+              <h5 id="gallerynumber"  style="color:blue;float:left;margin-left:30px"></h5>
+              <h5 id="posnumber" style="color:blue;float:left;margin-left:30px"></h5>
+              <h5 id="negnumber" style="color:blue;float:left;margin-left:30px"></h5>
+              <h5 id="torsonumber"  style="color:blue;float:left;margin-left:30px"></h5>
+              <h5 id="legnumber" style="color:blue;float:left;margin-left:30px"></h5>
+          </div>
+          <div id="biaozhuinfo">
+       <table border="1" bgcolor="#8a2be2" id="table" border="1" style="display: none; ">
+            <tr style="background-color: lightgray" >
+                <td>GalleryID</td>
+                <td>Rank</td>
+                <td>RegionID</td>
+                <td>Positive/Negative</td>
+                <td>Confidence</td>
+                <td>CurUserId</td>
+                <td>Querytimes</td>
+
+            </tr>
+        </table>
+   </div>
+
+    </div>
+
+
+      <div class="right" style="overflow:auto;height:100%"  >
+
+
+      <div id="show"></div>
+        <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display='block'"></a>
+
+         <div id="light2" class="white_content" >
+
+          <div id="feedback" style="display: none;margin-top:-20px">
+        <div style="float:left;margin-left: 100px;margin-top: 50px">
+            <p id="proname" style="display:inline;font-size: 8px"></p>
+            <p id="galname" style="display:inline;margin-left: 60px;font-size: 8px" ></p>
+          <div>
+          <img src="" class="img-thumbnail" alt="query_img" id="query_i" style='width:96px;height:192px'>&nbsp;&nbsp;&nbsp;
+          <img src="" class="img-thumbnail" alt="gallery_img" id="gallery_i" style='width:96px;height:192px'>
+          </div>
+        </div>
+        <div style="float:left;margin-left: 20px;margin-top: 50px">
+          <div>
+            <strong>torso：</strong><input type="range" id="torso" max="1" min="-1" step="0.01" style="height:20px;width:200px" >
+            <p style="margin-top:-5px">-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  </p>
+            <input type="text" id="torso_confidence" value="0" style="height:30px;width:200px;" >
+{#            <button id="save" value="save" style="height:30px;width:80px;" >save</button>#}
+            <button id="zero_tor"  style="height:30px;width:80px;" >zero</button>
+
+          </div>
+
+        <div style="margin-top:10px">
+            <strong>leg：</strong><input type="range" id="leg" max="1" min="-1" step="0.01" style="height:20px;width:200px;" >
+            <p style="margin-top:-5px">-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  </p>
+            <input type="text" id="leg_confidence" value="0" style="height:30px;width:200px;">
+            <button id="zero_leg"  style="height:30px;width:80px;" >zero</button>
+{#            <button id="cancel" value="cancel" style="height:30px;width:80px;" >cancel</button>#}
+        </div>
+        <button id="save" value="save" style="height:30px;width:80px;margin-top: 30px" >save</button>
+        <button id="cancel" value="cancel" style="height:30px;width:80px;margin-top: 30px" >cancel</button>
+                    </div>
+                </div>
+{#            <a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display='none'">退出</a>#}
+        </div>
+  </div>
+
+
+
+
+
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/viper.css"/>
+    <link rel="stylesheet" href="/static/css/jquery.range.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block extent_js %}
+        <!-- Javascripts-->
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/jquery.range.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/plugins/pace.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/opencv.js"></script>
+    <script src="/static/js/dataset_singleshot.js"></script>
+{% endblock %}

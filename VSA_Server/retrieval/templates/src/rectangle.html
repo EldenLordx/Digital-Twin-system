@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="canvas" width="48" height="128"></div>
+        <script type="text/javascript">
+            const img = new Image();
+            const canvas = document.querySelector("#canvas");
+{#            let ctx;#}
+            ctx = canvas.getContext("2d");
+            // 当图片加载完再动手
+            img.onload = function () {
+                // 画布大小和图片尺寸不一样算好比例
+                const cWidth = canvas.width, cHeight = canvas.height;
+                const imgWidth = img.naturalWidth, imgHeight = img.naturalHeight;
+                const zoom = {
+                    width: cWidth / imgWidth,
+                    height: cHeight / imgHeight,
+                };
+                // 以图画底
+                ctx.drawImage(img, 0, 0, cWidth, cHeight);
+                // 假设左上角的point 29,24 这是针对原图的坐标系
+                // 假设右下角的point 124,52 这是针对原图的坐标系
+                const startPoint = [3, 22], endPoint = [46, 65];
+                // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/strokeRect
+                ctx.strokeStyle = "blue";
+                ctx.strokeRect(
+                    startPoint[0] * zoom.width,
+                    startPoint[1] * zoom.height,
+                    (endPoint[0] - startPoint[0]) * zoom.width,
+                    (endPoint[1] - startPoint[1]) * zoom.height
+                );
+            }
+
+            // 动手
+            img.src = "D:\\SPF20180925\\data\\viper\\gallery\\000_45.bmp";
+        </script>
+</body>
+
+</html>

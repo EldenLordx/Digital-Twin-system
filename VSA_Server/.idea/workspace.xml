@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d345f103-bea5-45f4-820e-5f43b1f177b6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/hikcamera.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myspf/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/persondetect/yolov3_batch/detect_yolo_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/Initial/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/Initial/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/Initial/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/Initial/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/Initial/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/dataset_singleshot/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/dataset_singleshot/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/dataset_singleshot/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/dataset_singleshot/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/dataset_singleshot/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/video/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/video/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/apps/video/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/retrieval/database/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/DeepLabV3plus/DeepLab_Seg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/DeepLabV3plus/test_reid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/HumanParsing/seg_offline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/HumanParsing/seg_online.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deep_sort_pytorch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/VSA_Server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/coco.data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/coco.names" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/darknet19_448.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/tiny-yolo-voc.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/tiny-yolo.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/voc.data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/voc.names" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/voc_gaotie.data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/yolo-voc.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/yolo.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/yolo_v3.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/cfg/yolov3-tiny.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/darknet.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/detect.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/detector.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/region_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/yolo_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/yolo_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/yolov3-tiny.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/yolov3-tiny.weights" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/yolov3-tiny_20000.weights" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/yolov3-tiny_30000.weights" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YOLO3/yolov3.weights" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/run.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/work2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera/hikcamera.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_sort.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/checkpoint/ckpt.t7" beforeDir="false" afterPath="$PROJECT_DIR$/feature/person/ckpt.t7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/evaluate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/feature_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature/person/personExtractor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature/person/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/original_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature/person/original_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/train.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepfeature/train.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_yolo3_deepsort.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo_yolo3_deepsort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/motworker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/ISSUE_TEMPLATE/bug-report.md" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/ISSUE_TEMPLATE/bug-report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/ISSUE_TEMPLATE/feature-request.md" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/ISSUE_TEMPLATE/feature-request.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/ISSUE_TEMPLATE/question.md" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/ISSUE_TEMPLATE/question.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/dependabot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/dependabot.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/ci-testing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/ci-testing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/codeql-analysis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/codeql-analysis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/greetings.yml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/greetings.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/rebase.yml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/rebase.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/stale.yml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.github/workflows/stale.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/coco.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/coco128.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/hyp.finetune.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/hyp.scratch.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/images/bus.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/images/zidane.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/scripts/get_coco.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/scripts/get_voc.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/data/voc.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/detect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/hubconf.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/hubconf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/experimental.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/experimental.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/export.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/anchors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/anchors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov3-spp.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov3-spp.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov3-tiny.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov3-tiny.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov3.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov3.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-fpn.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-fpn.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-p2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-p2.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-p6.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-p6.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-p7.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-p7.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-panet.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/hub/yolov5-panet.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/yolo.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/yolo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5l.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5l.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5m.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5m.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5s.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5s.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5x.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/models/yolov5x.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/train.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/tutorial.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/tutorial.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/activations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/autoanchor.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/autoanchor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/general.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/google_app_engine/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/google_app_engine/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/google_app_engine/additional_requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/google_app_engine/additional_requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/google_app_engine/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/google_app_engine/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/google_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/google_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/loss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/plots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/utils/torch_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/persondetect/yolov5/utils/torch_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persondetect/yolov5/weights/download_weights.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/detection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/iou_matching.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/kalman_filter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/linear_assignment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/nn_matching.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/preprocessing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/track.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort/tracker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/clearfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/clearfile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video/1553564292_res.avi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video/1553569631_res.avi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video/detect.avi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video/mytest.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video/track.avi" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/VSA$client2__1_.coverage" NAME="client2 (1) Coverage Results" MODIFIED="1557922512382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$detect_task.coverage" NAME="detect_task Coverage Results" MODIFIED="1560834739540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$clearfile.coverage" NAME="clearfile Coverage Results" MODIFIED="1560832353065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1558873870029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$client3.coverage" NAME="client3 Coverage Results" MODIFIED="1557909196115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$seg_online.coverage" NAME="seg_online Coverage Results" MODIFIED="1560418384553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$server.coverage" NAME="server Coverage Results" MODIFIED="1557756747634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$demo_yolo3_deepsort.coverage" NAME="demo_yolo3_deepsort Coverage Results" MODIFIED="1553523351059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$work3.coverage" NAME="work3 Coverage Results" MODIFIED="1553524386612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$mytest2.coverage" NAME="mytest2 Coverage Results" MODIFIED="1553524383027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$bytetest.coverage" NAME="bytetest Coverage Results" MODIFIED="1557747533924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$server2.coverage" NAME="server2 Coverage Results" MODIFIED="1557803018932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$mytest.coverage" NAME="mytest Coverage Results" MODIFIED="1553565077041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$vsaworker.coverage" NAME="vsaworker Coverage Results" MODIFIED="1558254578856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$motworker.coverage" NAME="motworker Coverage Results" MODIFIED="1558629079255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$main.coverage" NAME="main Coverage Results" MODIFIED="1560242005653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$demo_yolo3_deepsort.coverage" NAME="demo_yolo3_deepsort Coverage Results" MODIFIED="1558594518639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$mytest4.coverage" NAME="mytest4 Coverage Results" MODIFIED="1553473093202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$motworker.coverage" NAME="motworker Coverage Results" MODIFIED="1557402567449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$client.coverage" NAME="client Coverage Results" MODIFIED="1557799169900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$work2.coverage" NAME="work2 Coverage Results" MODIFIED="1553577482204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$mytest3.coverage" NAME="mytest3 Coverage Results" MODIFIED="1553400376419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$seg_offline.coverage" NAME="seg_offline Coverage Results" MODIFIED="1560838853321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$client__1_.coverage" NAME="client (1) Coverage Results" MODIFIED="1557922534415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$seg_task.coverage" NAME="seg_task Coverage Results" MODIFIED="1560501798067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$detector.coverage" NAME="detector Coverage Results" MODIFIED="1553399434983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/YOLO3" />
+    <SUITE FILE_PATH="coverage/VSA_Server$mainWindow.coverage" NAME="mainWindow Coverage Results" MODIFIED="1559378091752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$client2.coverage" NAME="client2 Coverage Results" MODIFIED="1557910412044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$detector.coverage" NAME="detector Coverage Results" MODIFIED="1558612521999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA$clearfile.coverage" NAME="clearfile Coverage Results" MODIFIED="1557402488768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$person_mot_task.coverage" NAME="person_mot_task Coverage Results" MODIFIED="1560690193721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$work4.coverage" NAME="work4 Coverage Results" MODIFIED="1553524389052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$rstptest.coverage" NAME="rstptest Coverage Results" MODIFIED="1555061676740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$clearfile__1_.coverage" NAME="clearfile (1) Coverage Results" MODIFIED="1558962907200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$worker.coverage" NAME="worker Coverage Results" MODIFIED="1560838637612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$client2.coverage" NAME="client2 Coverage Results" MODIFIED="1558249208206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$visionalgmain.coverage" NAME="visionalgmain Coverage Results" MODIFIED="1559102089750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deep_sort_pytorch$work1.coverage" NAME="work1 Coverage Results" MODIFIED="1555067315488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$demo_face_track.coverage" NAME="demo_face_track Coverage Results" MODIFIED="1559976631581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VSA_Server$DeepLab_Seg.coverage" NAME="DeepLab_Seg Coverage Results" MODIFIED="1560743616480" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/clearfile.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/config.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/mot/person_mot_task.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectId" id="1q6YtrINj5rXrizDfErGeRhytVN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/retrieval" />
+      <recent name="$PROJECT_DIR$/segmentation/DeepLabV3plus" />
+      <recent name="$PROJECT_DIR$/persondetect/weights" />
+      <recent name="$PROJECT_DIR$/persondetect/Yolov3_batch/config" />
+      <recent name="$PROJECT_DIR$/mot" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/retrieval/apps" />
+      <recent name="$PROJECT_DIR$/retrieval" />
+      <recent name="$PROJECT_DIR$/segmentation" />
+      <recent name="$PROJECT_DIR$/retrieval/project/nercms" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.worker">
+    <configuration name="Mymainwindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="VSA_Server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mymainwindow.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="VSA_Server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/motworker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="VSA_Server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hikcamera" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="VSA_Server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hikcamera.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mainWindow" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="VSA_Server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mainWindow.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="worker" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="VSA_Server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/worker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Mymainwindow" />
+      <item itemvalue="Python.demo" />
+      <item itemvalue="Python.hikcamera" />
+      <item itemvalue="Python.mainWindow" />
+      <item itemvalue="Python.worker" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.worker" />
+        <item itemvalue="Python.hikcamera" />
+        <item itemvalue="Python.Mymainwindow" />
+        <item itemvalue="Python.mainWindow" />
+        <item itemvalue="Python.demo" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d345f103-bea5-45f4-820e-5f43b1f177b6" name="Default Changelist" comment="" />
+      <created>1553261605321</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553261605321</updated>
+      <workItem from="1553261606475" duration="5742000" />
+      <workItem from="1553483544931" duration="20495000" />
+      <workItem from="1553694708986" duration="37000" />
+      <workItem from="1554170464866" duration="715000" />
+      <workItem from="1554776132275" duration="2010000" />
+      <workItem from="1554954080176" duration="5803000" />
+      <workItem from="1555044750478" duration="8017000" />
+      <workItem from="1555076631010" duration="1138000" />
+      <workItem from="1555291636487" duration="156000" />
+      <workItem from="1555292998520" duration="2588000" />
+      <workItem from="1557130739247" duration="11138000" />
+      <workItem from="1557216368500" duration="24113000" />
+      <workItem from="1557908972445" duration="33570000" />
+      <workItem from="1558094113866" duration="780000" />
+      <workItem from="1558094916538" duration="31530000" />
+      <workItem from="1558324302425" duration="2727000" />
+      <workItem from="1558335075366" duration="44778000" />
+      <workItem from="1558864691875" duration="227000" />
+      <workItem from="1558864944932" duration="2567000" />
+      <workItem from="1558867686270" duration="11728000" />
+      <workItem from="1558880233008" duration="6772000" />
+      <workItem from="1558947035493" duration="1952000" />
+      <workItem from="1558949341669" duration="25531000" />
+      <workItem from="1559016778499" duration="976000" />
+      <workItem from="1559026354927" duration="18246000" />
+      <workItem from="1559045242999" duration="22061000" />
+      <workItem from="1559133135997" duration="9493000" />
+      <workItem from="1559314949216" duration="469000" />
+      <workItem from="1559318964742" duration="192000" />
+      <workItem from="1559319172740" duration="1119000" />
+      <workItem from="1559378060225" duration="4505000" />
+      <workItem from="1559389053370" duration="479000" />
+      <workItem from="1559391700914" duration="636000" />
+      <workItem from="1559393390838" duration="35692000" />
+      <workItem from="1559712530866" duration="170237000" />
+      <workItem from="1560162812650" duration="3199000" />
+      <workItem from="1560168382891" duration="37154000" />
+      <workItem from="1560261347238" duration="604000" />
+      <workItem from="1560306039661" duration="2202000" />
+      <workItem from="1560310358323" duration="50883000" />
+      <workItem from="1560430803875" duration="1258000" />
+      <workItem from="1560473061661" duration="17263000" />
+      <workItem from="1560678249701" duration="47570000" />
+      <workItem from="1560838469730" duration="1645000" />
+      <workItem from="1616401727437" duration="4418000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="669997000" />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="826" y="263" width="313" height="610" key="EnvironmentVariablesDialog" timestamp="1639659628602">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="826" y="263" width="313" height="610" key="EnvironmentVariablesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1639659628602" />
+    <state x="598" y="243" key="FileChooserDialogImpl" timestamp="1631068786860">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="598" y="243" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1631068786860" />
+    <state width="1826" height="340" key="GridCell.Tab.0.bottom" timestamp="1639662175107">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="340" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175107" />
+    <state width="1826" height="340" key="GridCell.Tab.0.center" timestamp="1639662175107">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="340" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175107" />
+    <state width="1826" height="340" key="GridCell.Tab.0.left" timestamp="1639662175107">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="340" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175107" />
+    <state width="1826" height="340" key="GridCell.Tab.0.right" timestamp="1639662175107">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="340" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175107" />
+    <state width="1826" height="339" key="GridCell.Tab.1.bottom" timestamp="1639662175070">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="339" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175070" />
+    <state width="1826" height="339" key="GridCell.Tab.1.center" timestamp="1639662175070">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="339" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175070" />
+    <state width="1826" height="339" key="GridCell.Tab.1.left" timestamp="1639662175070">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="339" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175070" />
+    <state width="1826" height="339" key="GridCell.Tab.1.right" timestamp="1639662175070">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1826" height="339" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1639662175070" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1639660726717">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1639660726717" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/segmentation/DeepLab-v3+/evaluate.py</url>
+          <line>315</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/segmentation (copy)/BiseNet/demo.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/segmentation_1/HumanParsing/main.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/segmentation_1/Yolov3/detect_yolo.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/segmentation_1/BiseNet/imgArray.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/segmentation_1/BiseNet/demo.py</url>
+          <line>93</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/persondetect/yolov3_batch/detector.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block title %}online{% endblock %}
+{% block content %}
+<div  name = "mydiv" id="mydiv" class="a" style="position:absolute;left:0px;top:50px;width:1350px;height:581px">
+{#鼠标点击事件#}
+    <style>
+        #box div{border: 1px solid red;position: absolute;}
+    </style>
+
+      <div id="probe" class="left" style="overflow:auto;height:100%;"  >
+          <div id="box">
+          <video id="video" controls width="640" height="360"></video>
+          </div>
+
+          <select id="camera_id" onchange="getCamera()">
+            <option value="1">camera1</option>
+            <option value="2">camera2</option>
+            <option value="3">camera3</option>
+            <option value="4">camera4</option>
+          </select>
+{#              <button id="capture">Capture Frame</button>#}
+              <button id="start" >start</button>
+              <button id="end">end</button>
+
+        <div id="output"> </div>
+        <div id="mk1" style="float:left;margin-left: 30px">
+        <div id="probename" ></div>
+         <div id="rankandtime" style="float:left" >
+              <h5 id="time" style="color:red;font-size:15px;margin-top: 20px;"></h5>
+              <h5 id="showmAP" style="color:red;font-size:15px;margin-top: 20px;"></h5>
+              <button id="query" type="button" class="btn btn-primary" style="margin-top: 20px;display: none">query</button>
+        </div>
+{#        <div><button id="query" type="button" class="btn btn-primary" style="float:left;margin-top: 10px;display: none">query</button></div>#}
+        </div>
+        <div id="query2mAP" style="float:left; margin-left:10px" ></div>
+
+
+
+{#        <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>#}
+{#        <div>#}
+{#          <button id="query" type="button" class="btn btn-primary" style="margin-left: 15px;margin-top: 100px;display: none">query</button>#}
+{#        </div>#}
+      </div>
+
+
+      <div class="right" style="overflow:auto;"  >
+{#          <div id="rankandtime">#}
+{#              <h5 id="time" style="color:red;"></h5>#}
+{#              <h5 id="showmAP" style="color:red;"></h5>#}
+{#          </div>#}
+          <div id="show"></div>
+    <style>
+     .white_content {
+            display: none;
+            position: absolute;
+            top: 15%;
+            left: 25%;
+            width: 50%;
+            height: 60%;
+            padding: 20px;
+            border: 10px solid orange;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+    </style>
+        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';"></a>
+        <div id="light" class="white_content" >
+
+          <div id="feedback" style="display: none;margin-top:-20px">
+        <div style="float:left;margin-left: 100px;margin-top: 100px">
+          <div>
+          <img src="" class="img-thumbnail" alt="query_img" id="query_i" style='width:80px;height:200px'>&nbsp;&nbsp;&nbsp;
+          <img src="" class="img-thumbnail" alt="gallery_img" id="gallery_i" style='width:80px;height:200px'>
+          </div>
+        </div>
+        <div style="float:left;margin-left: 20px;margin-top: 100px">
+          <div>
+            <strong>torso：</strong><input type="range" id="torso" max="1" min="-1" step="0.01" style="height:20px;width:200px" >
+            <p style="margin-top:-5px">-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  </p>
+            <input type="text" id="torso_confidence" value="0" style="height:30px;width:200px">
+            <button id="save" value="save" style="height:30px;width:80px;" >save</button>
+          </div>
+
+        <div style="margin-top:10px">
+            <strong>leg：</strong><input type="range"  id="leg" max="1" min="-1" step="0.01" style="height:20px;width:200px;"  >
+            <p style="margin-top:-5px">-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  </p>
+            <input type="text"  id="leg_confidence" value="0" style="height:30px;width:200px">
+            <button id="cancel"  value="cancel" style="height:30px;width:80px;" >cancel</button>
+        </div>
+
+                    </div>
+                </div>
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('leg').disabled=false;document.getElementById('leg_confidence').disabled=false;">退出</a>
+        </div>
+
+{#          <div id="feedback" style="display: none;">#}
+{#        <div style="float:left;margin-left: 100px;margin-top: 100px">#}
+{#          <div>#}
+{#          <img src="" class="img-thumbnail" alt="query_img" id="query_i" style='width:80px;height:200px'>&nbsp;&nbsp;&nbsp;#}
+{#          <img src="" class="img-thumbnail" alt="gallery_img" id="gallery_i" style='width:80px;height:200px'>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div style="float:left;margin-left: 20px;margin-top: 100px">#}
+{#          <div>#}
+{#            &nbsp;<strong>torso：</strong><input type="range" id="torso" max="1" min="-1" step="0.01" style="height:20px;width:200px" >#}
+{#            <p style="margin-top:-10px">-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  </p>#}
+{#            <input type="text" id="torso_confidence" value="0">#}
+{#            <button id="save" value="save" style="height:30px;width:80px;" >save</button>#}
+{#          </div>#}
+{##}
+{#        <div style="margin-top:30px">#}
+{#            &nbsp;&nbsp;<strong>leg：</strong><input type="range" id="leg" max="1" min="-1" step="0.01" style="height:20px;width:200px;" >#}
+{#            <p style="margin-top:-10px">-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  </p>#}
+{#            <input type="text" id="leg_confidence" value="0">#}
+{#            <button id="cancel" value="cancel" style="height:30px;width:80px;" >cancel</button>#}
+{#        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+  </div>
+
+</div>
+{% endblock %}
+{% block css %}
+{#    <link rel="stylesheet" href="/static/css/googleapis-fonts/fonts.css" >#}
+    <link rel="stylesheet" href="/static/css/jquery.range.css"/>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+{#    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video-js.min.css" rel="stylesheet">#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video.min.js"></script>#}
+<body>
+    <!-- Font-icon css-->
+{#    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{% endblock %}
+{% block extent_js %}
+
+
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+      <script src="/static/js/jquery.range.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/plugins/pace.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/video.js"></script>
+{% endblock %}
+
+
+  </body>
+</html>
